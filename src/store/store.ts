@@ -1,7 +1,7 @@
 // FILL HERE 3.3
 import { configureStore } from "@reduxjs/toolkit";
 import floorReducer from './floorreducer';
-import roleReducer from './Rolereducer';
+import roleReducer from './rolereducer';
 
 
 export const store = configureStore({
