@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import useBuildingData from "../../utils/BuildingDataProvider";
 import "./Layout.css";
 
+
 const Layout: React.FC<{children:ReactNode}> = ({children}) => {
   const floorAccess = useSelector(
     (state: {
@@ -19,7 +20,7 @@ const Layout: React.FC<{children:ReactNode}> = ({children}) => {
         <h1>מגדל נמרודי</h1>
         <div className="nav-links">
             <Link to="/">Home</Link>
-          {floorAccess.map((_: boolean, index: number) => (
+          {floorAccess?.map((_: boolean, index: number) => (
             <Link key={index} to={`/floor/${index}`}>
               {getFloorByIndex(index)?.purpose || `Floor ${index + 1}`}
             </Link>

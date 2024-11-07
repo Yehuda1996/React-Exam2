@@ -10,7 +10,7 @@ const Reception: React.FC = () => {
   const floorAccess = useSelector(
     (state: { floorAccess: { floorAccess: [boolean, boolean, boolean, boolean, boolean] } }) => state.floorAccess.floorAccess
   );
-  const currentRole = useSelector((state: { role: string }) => state.role);
+  const currentRole = useSelector((state: { role: { currentRole: string } }) => state.role.currentRole);
   const { getFloorByIndex } = useBuildingData();
   const dispatch = useDispatch();
 
@@ -32,31 +32,31 @@ const Reception: React.FC = () => {
 
       <section className="access-levels">
         <h2>Select Access</h2>
-        {floorAccess.map((floor: boolean, index: number) => (
+        {floorAccess?.map((floor: boolean, index: number) => (
           <div
             key={index}
             onClick={() => handleChangeAccess(index)}
             className={`box ${floor ? "blue" : "red"}`}
             role="button"
             tabIndex={0}
-            onKeyPress={(e) => e.key === "Enter" && handleChangeAccess(index)}
+            onKeyDown={(e) => e.key === "Enter" && handleChangeAccess(index)}
           >
             <h5>{floor ? "Access Granted" : "No Access"}</h5>
             <span>{getFloorByIndex(index)?.purpose || `Floor ${index + 1}`}</span>
           </div>
         ))}
       </section>
-
+    
       <section className="role-selection">
         <h2>Select Role</h2>
-        {optionalroles.map((role: string, index: number) => (
+        {optionalroles?.map((role: string, index: number) => (
           <div
             key={index}
             onClick={() => handleSetRole(index)}
             className={`box ${role === currentRole ? "blue" : "red"}`}
             role="button"
             tabIndex={0}
-            onKeyPress={(e) => e.key === "Enter" && handleSetRole(index)}
+            onKeyDown={(e) => e.key === "Enter" && handleSetRole(index)}
           >
             <h5>{role}</h5>
           </div>

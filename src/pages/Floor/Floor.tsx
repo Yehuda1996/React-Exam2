@@ -11,7 +11,7 @@ const Floor: React.FC = () => {
   const navigate = useNavigate();
 
   const thisFloor = getFloorByIndex(floorIndex);
-  const currentRole = useSelector((state: { role: string }) => state.role);
+  const currentRole = useSelector((state: { role: { currentRole: string } }) => state.role.currentRole);
   const thisFloorActivity: string = thisFloor?.activity || "";
   const activities = getListOfActivities();
 
