@@ -14,13 +14,12 @@ export const roleReducerSlice = createSlice({
     initialState,
     name: 'role',
     reducers: {
-        setRole: (state, action: PayloadAction<string>) => {
-            const newRole = action.payload;
-            if (roles.includes(newRole)){
-                state.currentRole = newRole
-            }
-            else {
-                console.error(`${newRole} is not an acceptable role `)
+        setRole: (state, action: PayloadAction<number>) => {
+            const roleIndex = action.payload;
+            if (roleIndex >= 0 && roleIndex < roles.length) {
+                state.currentRole = roles[roleIndex]; 
+            } else {
+                console.error(`${roleIndex} is not a valid role index`);
             }
         }
     }
